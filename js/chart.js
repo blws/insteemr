@@ -18,7 +18,7 @@ function dataToTable(zy, _ppv, _ppw) {
         .next().html(" " + (o3[zy] / o2[zy]).toFixed(2) + "")
         .next().html(" " + o1[zy] + "");
 };
-function dataToChart2(zy, _ppv, _ppw) {
+/*function dataToChart2(zy, _ppv, _ppw) {
     mixedChart.data.datasets[0].data[zy]++;
     mixedChart.data.datasets[1].data[zy] += _ppw;
     mixedChart.data.datasets[2].data[zy] += _ppv - _ppw;
@@ -390,4 +390,4 @@ function drawToChart2(savedAryi) {
     } else
     if (savedAry[a].ppv >= os[100]) { //dataToChart2(100,savedAry[a].ppv,savedAry[a].ppw);
     }
-}
+}*/
