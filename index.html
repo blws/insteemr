@@ -1,19 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+    <script src="data/ary.js"></script>
+    <script src="data/botlist.js"></script>
+    <script src="https://cdn.steemjs.com/lib/latest/steem.min.js" onload=""></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
 
-<div class="container-fluid">
-  <h1>My First Bootstrap Page</h1>
-  <p>This is some text.</p> 
-</div>
+<body id="bdiv">
+    <ons-navigator swipeable id="navigator" page="index.html"></ons-navigator>
+    <template id="index.html">
+        <ons-page id="index-page">
+            <button onclick="totop()" style="position:fixed;right:5%;z-index:5;bottom:5%;width:49px; height:49px; border-radius: 49px;">Top</button>
+            <div id="uptab" class="tabbar tabbar--top tabbar--top-border">
+                <div id="logodiv" class="invis">
+                    <center>
+                        <a href="http://google.com">
+                            <img src="img/logos.png" id="logopng"></img>
+                        </a>
+                    </center>
+                </div>
+                <div style="width:24%;"></div>
+                <div id="formHodl">
+                    <input type="search" value="" placeholder="Search tag" class="search-input search-input--material" id="inputlg" onfocus="sugestTag()"
+                        onfocusout="sugestTagOut()" onkeydown="tagDown(event)" onkeyup="tagUp(event)">
+                    <input id="trendInput" onchange="trendNumChange()" type="text" value="" placeholder="100" class="text-input text-input--material">
+                </div>
+                <label class="menubtn tabbar__item tabbar--top-border__item">
+                    <input onclick="tagFunction('',0);" type="radio" name="top-tabbar-b" checked="checked">
+                    <button class="tabbar__button tabbar--top-border__button">
+                        All tags
+                    </button>
+                </label>
+                <label class="menubtn tabbar__item tabbar--top-border__item">
+                    <input type="radio" name="top-tabbar-b" onclick="page('about.html')">
+                    <button class="tabbar__button tabbar--top-border__button">
+                        About
+                    </button>
+                </label>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="center chart">
+                <canvas id="chart0" width="100" height="37"></canvas>
+            </div>
+            <div id="sideDiv">
+                <div class="center ovh">
+                    <div class="center ovh">
+                        <h2 style="overflow:visible; text-overflow: clip;width:80%;z-index:3;">
+                            <b id="tagRoute">Tag: All</b>
+                        </h2>
+                        <br>
+                        <h5>
+                            <b id="trendMin">Minimum for first 100 in trending:</b>
+                        </h5>
+                        <br>
+                        <ons-list>
+                            <ons-list>
+                                <ons-list-item id="infoMain">
+                                    <div class="left bigtl">
+                                        <b>
+                                            Results:
+                                        </b>
+                                    </div>
+                                    <div class="center bigtc action-sheet-button" style="padding:0px">
+                                        0
+                                    </div>
+                                </ons-list-item>
+                                <ons-list-item>
+                                    <div class="left bigtl">
+                                        <b>
+                                            EWI:
+                                        </b>
+                                    </div>
+                                    <div class="center bigtc action-sheet-button " style="padding:0px">
+                                        0
+                                    </div>
+                                </ons-list-item>
+                                <ons-list-item>
+                                    <div class="left bigtl">
+                                        <b>
+                                            Earnings:
+                                        </b>
+                                    </div>
+                                    <div class="center bigtc action-sheet-button" style="padding:0px">
+                                        0
+                                    </div>
+                                </ons-list-item>
+                                <ons-list-item>
+                                    <div class="left bigtl">
+                                        <b>
+                                            EWI/E:
+                                        </b>
+                                    </div>
+                                    <div class="center bigtc action-sheet-button" style="padding:0px">
+                                        0
+                                    </div>
+                                </ons-list-item>
+                                <br>
+                            </ons-list>
+                        </ons-list>
+                        <br>
+                        <table id="tbMini0" class="table-hover tablen">
+                            <thead>
+                                <tr>
+                                    <th class="tbspec">Group</th>
+                                    <th class="tbspec tar">Num</th>
+                                    <th class="tbspec tar">%</th>
+                                    <th class="din">Earn</th>
+                                    <th class="tbspec tar">E%</th>
+                                    <th class="din">EWI</th>
+                                    <th class="tbspec tar">EWI</th>
 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="tbspec" id="btnmini0">All >$6</td>
+                                    <td class="tbspec tar">$ 0</td>
+                                    <td class="tbspec tar">0</td>
+                                    <td class="tar din">$ 0</td>
+                                    <td class="tbspec tar">0</td>
+                                    <td class="tar din">0</td>
+                                    <td class="tbspec tar">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbspec" id="btnmini100">>$100</td>
+                                    <td class="tbspec tar">$ 0</td>
+                                    <td class="tbspec tar">0</td>
+                                    <td class="tar din">$ 0</td>
+                                    <td class="tbspec tar">0</td>
+                                    <td class="tar din">0</td>
+                                    <td class="tbspec tar">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbspec" id="btnmini6">$6-$99</td>
+                                    <td class="tbspec tar">$ 0</td>
+                                    <td class="tbspec tar">0</td>
+                                    <td class="tar din">$ 0</td>
+                                    <td class="tbspec tar">0</td>
+                                    <td class="tar din">0</td>
+                                    <td class="tbspec tar">0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br class="hidec">
+                        <br class="hidec">
+                        <ons-list class="hidec">
+                            <ons-list-item id="infoList">
+                                <div class="left bigtl">
+                                    <b>Post count:</b>
+                                </div>
+                                <div class="center bigtc action-sheet-button" style="padding:0px">
+                                    0
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item>
+                                <div class="left bigtl">
+                                    <b>
+                                        EWI:
+                                    </b>
+                                </div>
+                                <div class="center bigtc action-sheet-button" style="padding:0px">
+                                    0
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item>
+                                <div class="left bigtl">
+                                    <b>
+                                        Earnings:
+                                    </b>
+                                </div>
+                                <div class="center bigtc action-sheet-button" style="padding:0px">
+                                    0
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item>
+                                <div class="left bigtl">
+                                    <b>
+                                        EWI/E:
+                                    </b>
+                                </div>
+                                <div class="center bigtc action-sheet-button" style="padding:0px">
+                                    0
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item>
+                                <div class="left bigtl">
+                                    <b>
+                                        Begin date:
+                                    </b>
+                                </div>
+                                <div class="center bigtc">
+                                    0
+                                </div>
+                            </ons-list-item>
+                            <ons-list-item>
+                                <div class="left bigtl">
+                                    <b>
+                                        Snapshot taken:
+                                    </b>
+                                </div>
+                                <div class="center bigtc">
+                                    0
+                                </div>
+                            </ons-list-item>
+                        </ons-list>
+
+                        <table id="tb22" class="table-hover hidec tablen">
+                            <thead>
+                                <tr>
+                                    <th class="tbspec">Group</th>
+                                    <th class="tbspec tar">Num</th>
+                                    <th class="tbspec tar">%</th>
+                                    <th class="din">Earn</th>
+                                    <th class="tbspec tar">E%</th>
+                                    <th class="din">EWI</th>
+                                    <th class="tbspec tar">EWI</th>
+                                </tr>
+                            </thead>
+                            <br>
+                            <tbody>
+                                <tr>
+                                    <td id="alltag2">All</td>
+                                    <td class="tbspec tar">$ 0</td>
+                                    <td class="tbspec tar">0</td>
+                                    <td class="tar din">$ 0</td>
+                                    <td class="tbspec tar">0</td>
+                                    <td class="tar din">0</td>
+                                    <td class="tbspec tar">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbspec" id="btn1002">>$100</td>
+                                    <td class="tbspec tar">$ 0</td>
+                                    <td class="tbspec tar">0</td>
+                                    <td class="tar din">$ 0</td>
+                                    <td class="tbspec tar">0</td>
+                                    <td class="tar din">0</td>
+                                    <td class="tbspec tar">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbspec" id="btn62">$6-$99</td>
+                                    <td class="tbspec tar">$ 0</td>
+                                    <td class="tbspec tar">0</td>
+                                    <td class="tar din">$ 0</td>
+                                    <td class="tbspec tar">0</td>
+                                    <td class="tar din">0</td>
+                                    <td class="tbspec tar">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbspec" id="btn12">$1-$5</td>
+                                    <td class="tbspec tar">$ 0</td>
+                                    <td class="tbspec tar">0</td>
+                                    <td class="tar din">$ 0</td>
+                                    <td class="tbspec tar">0</td>
+                                    <td class="tar din">0</td>
+                                    <td class="tbspec tar">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbspec" id="btn02">$0-$1</td>
+                                    <td class="tbspec tar">$ 0</td>
+                                    <td class="tbspec tar">0</td>
+                                    <td class="tar din">$ 0</td>
+                                    <td class="tbspec tar">0</td>
+                                    <td class="tar din">0</td>
+                                    <td class="tbspec tar">0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br class="hidec">
+                        <ons-list>
+                            <ons-list-item onclick="tagFunction('',0)" tappable>All</ons-list-item>
+                            <ons-list-header>
+                                <br>
+                                <h4>
+                                    <b>Add tag</b>
+                                </h4>
+                            </ons-list-header>
+                        </ons-list>
+                        <ons-list class="miniscroll" style="overflow: auto;" id="addTag">
+                            <ons-list-item tappable>All 0</ons-list-item>
+                            <ons-list-item tappable>All 1</ons-list-item>
+                            <ons-list-item tappable>All 2</ons-list-item>
+                            <ons-list-item tappable>All 3</ons-list-item>
+                            <ons-list-item tappable>All 4</ons-list-item>
+                            <ons-list-item tappable>All 5</ons-list-item>
+                        </ons-list>
+                        <ons-list>
+                            <ons-list-header>
+                                <br>
+                                <h4>
+                                    <b>Top authors</b>
+                                </h4>
+                            </ons-list-header>
+                        </ons-list>
+                        <ons-list class="miniscroll" style="overflow: auto;" id="topauth">
+                            <ons-list-item tappable>All 0</ons-list-item>
+                            <ons-list-item tappable>All 1</ons-list-item>
+                            <ons-list-item tappable>All 2</ons-list-item>
+                            <ons-list-item tappable>All 3</ons-list-item>
+                            <ons-list-item tappable>All 4</ons-list-item>
+                            <ons-list-item tappable>All 5</ons-list-item>
+                        </ons-list>
+                        </ons-card>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div id="resultDiv" class="mresult" style="min-height:90px;">
+                <h4 style="margin-left:4px;"> Sort by EWI</h4>
+                <div style="display:block;float:left;">
+                    <ons-switch onclick="mswclick()" id="msw" style="margin-left:4px;"></ons-switch>
+                </div>
+                <center id="mainPages1"></center>
+            </div>
+            <div id="mdiv" class="mresult">
+            </div>
+            <script src="js/lazy.js"></script>
+            <script src="js/chart.js"></script>
+            <script src="js/app.js"></script>
+            <script src="js/steemf.js"></script>
+        </ons-page>
+    </template>
+    <template id="about.html">
+        <ons-page id="about-page">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>Back</ons-back-button>
+                </div>
+                <div class="center"></div>
+            </ons-toolbar>
+            <p style="text-align: center;">About page.</p>
+        </ons-page>
+    </template>
 </body>
 </html>
