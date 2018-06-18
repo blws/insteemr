@@ -1,0 +1,242 @@
+@media screen and (max-width: 1062px) {
+    .chart {
+        display: block;
+        clear: both;
+        width: 100%;
+    }
+    #sideDiv {
+        display: block;
+        clear: both;
+        width: 70%;
+        margin: auto;
+    }
+    #mdiv {
+        height: 120%;
+        overflow: auto;
+    }
+    #resultDiv {
+        margin: 0 auto;
+    }
+    .mresult {
+        width: 100%;
+        margin: auto;
+    }
+    .invis{
+        display: none;
+    }
+   
+}
+
+@media screen and (min-width: 1062px) {
+    .chart {
+        width: 70%;
+        float: right;
+        padding: 0;
+        margin-right: 8%;
+    }
+    #sideDiv {
+        width: 18%;
+        max-width: 300px;
+        height: 100%;
+        min-height: 1400px;
+        margin-left: 3%;
+        float: left;
+        vertical-align: top;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    #mdiv {
+        height: 100%;
+        min-height: 1400px;
+        overflow: auto;
+    }
+    
+    .mresult {
+        width: 75%;
+        float: left;
+        vertical-align: top;
+        margin-left: 3%;
+    }
+    #mainPages1 {
+        margin-right:15%;
+    }
+}
+
+.menubtn {
+    max-width: 58px;
+    padding: 4px;
+    margin-left: 10px;
+}
+
+.tbspec {
+    font-size: 11px;
+    padding: 2px;
+}
+
+.dropdown {
+    width: 90%;
+    z-index: 10;
+    border: 0px solid white;
+    text-align: left;
+    max-width: 229px;
+    display: block;
+}
+
+.bigtl {
+    margin: 0;
+    padding: 0;
+    width: 120px;
+}
+
+.bigtc {
+    text-align: right;
+    margin: 0;
+    padding: 0;
+    padding-right: 8px;
+}
+
+.mystyle {
+    width: 220px;
+    height: 260px;
+    float: left;
+    padding: 0px;
+    margin-left:0.5%;
+}
+.myimg {
+    width: 100%;
+    max-height:125px;
+    height:125px;
+    object-fit: cover;
+    padding:0px;
+    margin:0 auto;
+}
+.mypbr{
+    width:100%;
+    height:4px;
+    background-color:rgb(255,50,120);
+}
+.mypbf{
+    height:100%;
+    background:rgb(50,205,50);
+}
+.mytit { 
+    margin-top:4px;
+    margin-left: 4px;
+    margin-right: 5%;
+    max-height:41px; 
+    height:41px;
+    overflow:hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    padding: 0px;
+    margin-bottom: 0px;
+    font-weight: 580;
+    text-overflow: ellipsis;
+    font-family: 'Roboto', sans-serif;
+}
+.myusr {
+    padding: 3px;
+}
+.mytb{
+    margin-top: 4px;
+    width:100%;
+    text-align:center;
+}
+
+
+
+.miniscroll {
+    max-height: 250px;
+    
+}
+
+.pagebut {
+    display: inline-block;
+    
+}
+
+.tagbtn {
+    width: 62px;
+    margin-left: 2px;
+    border-radius: 7px;
+    background-color: white;
+}
+.tac {
+    text-align: center;
+    color: grey;
+}
+.myc{
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 6px;
+}
+.mya:link {
+    text-decoration: none;
+    color: black;
+}
+
+.mya:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.mya:hover {
+    text-decoration: none;
+    color: grey;
+}
+
+.mya:active {
+    text-decoration: none;
+    color: black;
+}
+
+#uptab {
+    position: fixed;
+    z-index: 3;
+}
+
+#logodiv {
+    width: 18%;
+    margin-left: 3%;
+}
+
+#logopng {
+    width: 42px;
+    border-radius: 21px;
+    margin-top: 3px;
+}
+
+#inputlg {
+    max-width: 210px;
+    height: 39px;
+    margin-top: 5px;
+}
+
+#trendInput {
+    margin-left: 18px;
+    max-width: 36px;
+    height: 40px;
+    margin-top: 11px;
+    margin-right: 4px;
+}
+
+.din {
+    display: none;
+}
+
+.ovh {
+    overflow: hidden;
+}
+
+.tar {
+    text-align: right;
+}
+
+.tablen {
+    margin: auto;
+    width: 100%;
+}
+#mdiv::-webkit-scrollbar {
+    display:hidden;
+}
