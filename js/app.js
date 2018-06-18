@@ -410,11 +410,11 @@ function pageFunction(y) {
 }
 function tagFunction(word, pgnum) {
     var specialAry = [];
-    /*for (i = 0; i < 95; i++) {
+    for (i = 0; i < 95; i++) {
         mixedChart.data.datasets[0].data[i] = 0;
         mixedChart.data.datasets[1].data[i] = 0;
         mixedChart.data.datasets[2].data[i] = 0;
-    }*/
+    }
     $("#tagRoute").html("/" + word);
     $(".hidec").hide()
     pageNum = 0;
@@ -467,10 +467,10 @@ function tagFunction(word, pgnum) {
             //$("#addTag").append('<ons-list-item tappable><button class="tagbtn" onclick="tagFunctionAdd(' + "'" + sortableTags[z][0] + "'" + ',0)"><div style="widht:50px;border: 1px solid black;float:left; padding:5px;">' + sortableTags[z][0] + " (" + ((sortableTags[z][1] / (sortableTags[0][1])) * 100).toFixed(2) + "%) </div></button></ons-list-item>");
             $("#addTag").append('<ons-list-item onclick="tagFunction(' + "'" + filtGayAry[z][0] + "'" + ',0)" tappable><div class="center">' + filtGayAry[z][0] + '</div><div class="right">' + filtGayAry[z][1].toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '$</div></ons-list-item>');
         }
-        /*for (x in savedAry) {
+        for (x in savedAry) {
             drawToChart2(savedAry[x]);
             specialAry.push(savedAry[x]);
-        }*/
+        }
         authEarn = authEarnSave.slice();
         $('#topauth').html("");
         var topcnt = 200;
@@ -482,7 +482,7 @@ function tagFunction(word, pgnum) {
                 authEarn[i][0] + '">' + authEarn[i][0] + '</a></div><div class="right">' +
                 authEarn[i][1].toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '$</div></ons-list-item>');
         }
-        //mixedChart.update();
+        mixedChart.update();
     } else {
         var hdif = 0,
             hewi = 0,
@@ -510,7 +510,7 @@ function tagFunction(word, pgnum) {
             for (x in savedAry) {
                 for (y in savedAry[x].json_metadata.tags) {
                     if (word == savedAry[x].json_metadata.tags[y]) {
-                        //drawToChart2(savedAry[x]);
+                        drawToChart2(savedAry[x]);
                         if (authorz.indexOf(savedAry[x].author) < 0) {
                             authorz.push(savedAry[x].author);
                             authEarn.push([savedAry[x].author, savedAry[x].ppw]);
@@ -568,7 +568,7 @@ function tagFunction(word, pgnum) {
                         }
                 }
                 if ((cntw == word.length) && (cntw > 0)) {
-                    //drawToChart2(savedAry[x]);
+                    drawToChart2(savedAry[x]);
                     if (authorz.indexOf(savedAry[x].author) < 0) {
                         //console.log(savedAry[x].author);
 
@@ -634,7 +634,7 @@ function tagFunction(word, pgnum) {
                 $("#addTag").append('<ons-list-item onclick="tagFunctionAdd(' + "'" + sortableTags[z][0] + "'" + ',0)" tappable><div class="center">' + sortableTags[z][0] + '</div><div class="right">' + sortableTags[z][1].toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '$</div></ons-list-item>');
             }
         }
-        //hnum = mixedChart.data.datasets[0].data[0];
+        hnum = mixedChart.data.datasets[0].data[0];
         $("#btnmini100")
             .next().html("  " + hnum.toFixed(0) + "")
             .next().html("  " + ((hnum / (allNum2)) * 100).toFixed(1) + "%")
@@ -646,13 +646,13 @@ function tagFunction(word, pgnum) {
             hewi2 = 0,
             hdif2 = 0;
         hnum = 0;
-        /*for (i = 0; i < 95; i++) {
+        for (i = 0; i < 95; i++) {
             hnum += mixedChart.data.datasets[0].data[i];
             hewi += mixedChart.data.datasets[1].data[i];
             hdif += mixedChart.data.datasets[2].data[i];
             hewi2 += mixedChart.data.datasets[1].data[i];
             hdif2 += mixedChart.data.datasets[2].data[i];
-        }*/
+        }
         hnum2 = hnum - hnum2;
         $("#btnmini6")
             .next().html("  " + hnum2.toFixed(0) + "")
@@ -669,7 +669,7 @@ function tagFunction(word, pgnum) {
 
 
     }
-    //mixedChart.update();
+    mixedChart.update();
 
 
     var ssw = document.getElementById("msw");
